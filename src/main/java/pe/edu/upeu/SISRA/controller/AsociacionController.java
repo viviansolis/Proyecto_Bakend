@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upeu.SISRA.service.AsociacionService;
 
 @RestController
-@CrossOrigin(origins = "", maxAge = 3600)
+@CrossOrigin(origins = "*", allowedHeaders = "*" )
 @RequestMapping("/asociaciones")
 public class AsociacionController {
 
