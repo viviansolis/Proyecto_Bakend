@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import pe.edu.upeu.SISRA.entity.Asociacion;
+import pe.edu.upeu.SISRA.entity.Tipo_Asociacion;
 
 public interface AsociacionDao {
 	int create(Asociacion a);

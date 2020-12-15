@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import pe.edu.upeu.SISRA.dao.AsociacionDao;
 import pe.edu.upeu.SISRA.entity.Asociacion;
+import pe.edu.upeu.SISRA.entity.Tipo_Asociacion;
 import pe.edu.upeu.SISRA.service.AsociacionService;
 
 @Service

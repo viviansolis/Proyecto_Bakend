@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 import oracle.jdbc.OracleTypes;
 import pe.edu.upeu.SISRA.dao.AsociacionDao;
 import pe.edu.upeu.SISRA.entity.Asociacion;
+import pe.edu.upeu.SISRA.entity.Tipo_Asociacion;
 
 @Component
 public class AsociacionDaoImpl implements AsociacionDao {
@@ -48,13 +49,10 @@ public class AsociacionDaoImpl implements AsociacionDao {
 		a.getEstado(),
 		a.getNom_asc(),
 		a.getImf_adicional(),
-		a.getN_miembros(),
+		a.getN_mienbros(),
 		a.getF_constitucion(),
 		a.getTipo_asociacion_id_asc_tipo(),
 		a.getCasa_vecinal_id_asc_cv(),
 		a.getUbicacion());
 	}
-
-
-
 }
