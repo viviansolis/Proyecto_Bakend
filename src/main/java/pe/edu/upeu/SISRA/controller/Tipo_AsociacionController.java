@@ -11,24 +11,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pe.edu.upeu.SISRA.entity.Asociacion;
-import pe.edu.upeu.SISRA.service.AsociacionService;
+import pe.edu.upeu.SISRA.entity.Tipo_Asociacion;
+import pe.edu.upeu.SISRA.service.Tipo_AsociacionService;
 
 
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders="*")
-@RequestMapping("/asoc")
-public class AsociacionController {
+@CrossOrigin(origins = {"http://localhost:4200"})
+@RequestMapping("/tipo")
+public class Tipo_AsociacionController {
+	
 	@Autowired
-	private AsociacionService as;
+	private Tipo_AsociacionService tipoas;
+	
 	@GetMapping("/all")
 	public List<Map<String, Object>> readAll(){
-		return as.readAll();
+		return tipoas.readAll();
 	}
 	@PostMapping("/add")
-	public int create(@RequestBody Asociacion a) {
-		return as.create(a);
+	public int create(@RequestBody Tipo_Asociacion t) {
+		return tipoas.create(t);
 	}
 
 }

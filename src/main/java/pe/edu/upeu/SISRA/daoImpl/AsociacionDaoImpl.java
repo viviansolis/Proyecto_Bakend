@@ -1,6 +1,8 @@
 package pe.edu.upeu.SISRA.daoImpl;
 
 import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,9 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Component;
 
+import oracle.jdbc.OracleTypes;
 import pe.edu.upeu.SISRA.dao.AsociacionDao;
+import pe.edu.upeu.SISRA.entity.Asociacion;
 
 @Component
 public class AsociacionDaoImpl implements AsociacionDao {
@@ -23,38 +27,34 @@ public class AsociacionDaoImpl implements AsociacionDao {
 	private SimpleJdbcCall simpleJdbcCall;
 
 	@Override
-	public Map<String, Object> read(int id) {
-		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withCatalogName("pk_asociacion")
-				.withProcedureName("sp_read_asociacion")
-				.declareParameters(new SqlOutParameter("cursor_asociacion", Types.REF_CURSOR, new ColumnMapRowMapper()), new SqlParameter("idasociacion", Types.NUMERIC));                           
-				SqlParameterSource in = new MapSqlParameterSource().addValue("idasociacion", id);
-				Map<String, Object> map = simpleJdbcCall.execute(in);
-		return map;
-	}
-
-	@Override
-	public Map<String, Object> readAll() {
-		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+	public List<Map<String, Object>> readAll() {
+		// TODO Auto-generated method stub
+		List<Map<String,Object>> lista= new ArrayList<>();
+		simpleJdbcCall =new SimpleJdbcCall(jdbcTemplate)
 				.withCatalogName("pk_asociacion")
 				.withProcedureName("sp_listar_asociacion")
-				.declareParameters(new SqlOutParameter("cursor_asociacion", Types.REF_CURSOR, new ColumnMapRowMapper()));
-				Map<String, Object> map = simpleJdbcCall.execute();
-		return map;
+				.declareParameters(new SqlOutParameter("cursor_asociacion", OracleTypes.REF_CURSOR, new ColumnMapRowMapper()));
+		        Map<String, Object> map = simpleJdbcCall.execute();
+		        lista.add(map);
+		return lista;
+	
 	}
 
 	@Override
-	public Map<String, Object> read(String name) {
-		/* simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-		.withCatalogName("pk_asociacion")
-		.withProcedureName("sp_read_asoc_name")
-		.declareParameters(new SqlOutParameter("cursor_asociacion", Types.REF_CURSOR, new ColumnMapRowMapper()), new SqlParameter("asc_nom", Types.VARCHAR));
-		SqlParameterSource in = new MapSqlParameterSource().addValue("asc_nom", String);
-		Map<String, Object> map = simpleJdbcCall.execute(in);
-		return map;
-		*/
-		return null;
+	public int create(Asociacion a) {
+		// TODO Auto-generated method stub
+		return jdbcTemplate.update("call PKG_ASOCIACION.SP_CREATE_ASOCIACIONES(?,?,?,?,?,?,?,?)",
+	   
+		a.getEstado(),
+		a.getNom_asc(),
+		a.getImf_adicional(),
+		a.getN_miembros(),
+		a.getF_constitucion(),
+		a.getTipo_asociacion_id_asc_tipo(),
+		a.getCasa_vecinal_id_asc_cv(),
+		a.getUbicacion());
 	}
+
 
 
 }

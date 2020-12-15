@@ -1,28 +1,30 @@
 package pe.edu.upeu.SISRA.serviceImpl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.edu.upeu.SISRA.dao.AsociacionDao;
+import pe.edu.upeu.SISRA.entity.Asociacion;
 import pe.edu.upeu.SISRA.service.AsociacionService;
 
 @Service
 public class AsociacionServiceImpl implements AsociacionService{
 	@Autowired
-	private AsociacionDao ascDao;
+	private AsociacionDao as;
 
 	@Override
-	public Map<String, Object> read(int id) {
+	public List<Map<String, Object>> readAll() {
 		// TODO Auto-generated method stub
-		return ascDao.read(id);
+		return as.readAll();
 	}
 
 	@Override
-	public Map<String, Object> readAll() {
+	public int create(Asociacion a) {
 		// TODO Auto-generated method stub
-		return ascDao.readAll();
+		return as.create(a);
 	}
 	
 }

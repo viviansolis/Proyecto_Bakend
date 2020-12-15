@@ -7,32 +7,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import pe.edu.upeu.SISRA.dao.AsociacionDao;
 import pe.edu.upeu.SISRA.dao.DocumentoDao;
-import pe.edu.upeu.SISRA.dao.RolDao;
+import pe.edu.upeu.SISRA.entity.Rol;
 import pe.edu.upeu.SISRA.dao.UsuarioDao;
 
 @SpringBootTest
 class SisraApplicationTests {
 	@Autowired
-	AsociacionDao asc;
-	@Autowired
-	DocumentoDao d;
-	@Autowired
-	PasswordEncoder p;
-	@Autowired
-	RolDao r;
-	@Autowired
-	UsuarioDao u;
-	
+	PasswordEncoder passwordEncoder;
 	@Test
 	void contextLoads() {
-		
-		/*System.out.println(asc.readAll());*/
-		
-		/*System.out.println(d.read(1));*/
-		
-		/*System.out.println(p.encode("1234"));*/
-		
-		System.out.println(r.buscarRolUser(6));
+		System.out.println(passwordEncoder.encode("123"));
 	}
-
 }
